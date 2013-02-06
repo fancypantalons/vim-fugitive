@@ -738,13 +738,13 @@ function! s:StageDiff(diff) abort
     return 'Git! diff'
   elseif filename =~# ' -> '
     let [old, new] = split(filename,' -> ')
-    execute 'Gedit '.s:fnameescape(':0:'.new)
-    return a:diff.' HEAD:'.s:fnameescape(old)
+    execute 'Gedit :0:'.new
+    return a:diff.' HEAD:'.old
   elseif section ==# 'staged'
-    execute 'Gedit '.s:fnameescape(':0:'.filename)
+    execute 'Gedit :0:'.filename
     return a:diff.' -'
   else
-    execute 'Gedit '.s:fnameescape('/'.filename)
+    execute 'Gedit /'.filename
     return a:diff
   endif
 endfunction
